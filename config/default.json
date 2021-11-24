@@ -1,3 +1,4 @@
 {
-    "mongoURI": "mongodb+srv://shahbazmansahia:test123A!@devconnector.sbvuk.mongodb.net/DevConnector?retryWrites=true&w=majority"
+    "mongoURI": "mongodb+srv://shahbazmansahia:test123A!@devconnector.sbvuk.mongodb.net/DevConnector?retryWrites=true&w=majority",
+    "jwtSecret": "mysecrettoken"
 }
