@@ -10,7 +10,7 @@ const config = require('config');
 const {check, validationResult} = require('express-validator/check');
 
 // Extract user model
-const User = require ('../../models/user');
+const User = require ('../../models/Users');
 
 // @route   POST api/users
 // @desc    Register user
@@ -39,7 +39,7 @@ router.post(
         const { name, email, password} = req.body;
 
         try{
-        // See if user exists
+        /* See if user exists */
         
         // Get the user using email attrib
         let user = await User.findOne({ email });
@@ -47,7 +47,7 @@ router.post(
         if (user){
             res.status(400).json({errors: [{ msg: 'User already exists! '}]});
         }
-        // Get users gravatar
+        /* Get users gravatar */
 
         const avatar = gravatar.url(email, {
             // default size of string 200
@@ -87,7 +87,7 @@ router.post(
         jwt.sign(
             payload, 
             config.get('jwtSecret'),
-            { expiresIn: 36000},
+            { expiresIn: 360000},
             (err, token) => {
                 if (err) throw err;
                 res.json({ token });
