@@ -1,0 +1,19 @@
+npx create-react-app client 
+[^ comes with node.js]
+
+\\ within package.json add:
+"client": "npm start --prefix client",
+"dev": "concurrently \"npm run server\" \"npm run client\""
+
+\\ after cd into client directory...
+
+npm i axios react-router-dom redux react-redux redux-thunk redux-devtools-extension moment react-moment
+[axios for global headers; react-router-dom for router api on react app; redux-thunk is middleware; redux-devtools-extension for getting devtools for developing react app; moment for date-time library; react-moment for running moment in react]
+
+<delete gitignore and readme.md within client folder as it may be redundant for how we might be running the app with an already initialized git and backend>
+
+\\ then to remove git repo file within client
+cd client
+rm -rf .git
+
+\\ add proxy to package.json [WITHIN CLIENT DIRECTORY] to make it easier to get to router api on browser
