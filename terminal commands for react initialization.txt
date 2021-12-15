@@ -17,3 +17,7 @@ cd client
 rm -rf .git
 
 \\ add proxy to package.json [WITHIN CLIENT DIRECTORY] to make it easier to get to router api on browser
+
+\\ remove app.test.js, index.css, logo.svg, reportWebVital.js, setupTests.js from client>src and leave only index.js, app.js and app.css in it
+
+\\ remove imports.references to removed files in app.js and index.js
