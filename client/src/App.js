@@ -4,8 +4,8 @@ import {BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Navbar from './components/layout/Navbar';
 import Landing from './components/layout/Landing';
-import Register from './components/layout/auth/Register';
-import Login from './components/layout/auth/Login';
+import Register from './components/auth/Register';
+import Login from './components/auth/Login';
 
 
 /* The <Landing /> tag was changed from 'Landing', component was changed to element due to compatibility issues with the latest version of React*/

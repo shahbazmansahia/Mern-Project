@@ -21,3 +21,6 @@ rm -rf .git
 \\ remove app.test.js, index.css, logo.svg, reportWebVital.js, setupTests.js from client>src and leave only index.js, app.js and app.css in it
 
 \\ remove imports.references to removed files in app.js and index.js
+
+\\ after configuring client>package.json; from root [i.e. outside client]
+npm run dev
