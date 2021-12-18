@@ -7,11 +7,20 @@ import Landing from './components/layout/Landing';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
 
+// Redux libs./files
+
+import { Provider } from 'react-redux';
+// store Provider
+import store from './store';
+
+
 
 /* The <Landing /> tag was changed from 'Landing', component was changed to element due to compatibility issues with the latest version of React*/
-        
+/* <Provider> wrap for redux store provider */        
 const App = () => (
-  <Router>
+  
+  <Provider store= {store}>
+    <Router>
     <Fragment>
       <Navbar />
       <Routes>
@@ -28,6 +37,7 @@ const App = () => (
     </Fragment>
   
   </Router>
+  </Provider>
   );
 
 export default App;
