@@ -13,7 +13,7 @@ import { Provider } from 'react-redux';
 // store Provider
 import store from './store';
 
-
+import Alert from './components/layout/Alert';
 
 /* The <Landing /> tag was changed from 'Landing', component was changed to element due to compatibility issues with the latest version of React*/
 /* <Provider> wrap for redux store provider */        
@@ -27,6 +27,7 @@ const App = () => (
         <Route exact path= '/' element = {<Landing />} />
       </Routes>
         <section className = "container">
+          <Alert />
           <Routes>
             <Route exact path='/register' element = {<Register />} />
             <Route exact path='/login' element = {<Login />} />

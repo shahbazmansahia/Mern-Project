@@ -14,6 +14,7 @@ export default function (state = initialState, action) {
         
         case REMOVE_ALERT:
             // we use the *.filter() method because we want to eliminate only 1 alert
+            // this simply filters out the particular payload triggered to complete the timeout process for alerts
             return state.filter(alert => alert.id !== payload);
 
         default:
