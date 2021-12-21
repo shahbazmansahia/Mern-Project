@@ -24,3 +24,10 @@ rm -rf .git
 
 \\ after configuring client>package.json; from root [i.e. outside client]
 npm run dev
+
+
+\\ Install uuid for easy random number generation
+npm i uuid
+
+\\ NOTE: for uuid, the syntax for importing has now changed to (in ES6):
+import { v4 as uuidv4 } from 'uuid'; \\ for importing uuid.v4, in this statement

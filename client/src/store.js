@@ -5,8 +5,11 @@ import rootReducer from './reducers';
 
 const initialState = {};
 
-const middleware = {thunk};
+const middleware = [thunk];
 // '...middleware' is a spread operator with the middleware variable/attribute
-const store = createStore(rootReducer, initialState, composeWithDevTools (applyMiddleware(...middleware)));
+const store = createStore(rootReducer, 
+                          initialState, 
+                          composeWithDevTools (applyMiddleware(...middleware))
+                          );
 
 export default store;
