@@ -7,7 +7,10 @@ import PropTypes from 'prop-types';
 // for alert action implementation via react redux
 import { connect } from 'react-redux';
 
-export const Register = ( { setAlert } ) => {
+import { register } from '../../actions/auth';
+
+
+export const Register = ( { setAlert, register } ) => {
     
     // formData: Object which contains all the form Data
     // setFormData: function for updating state
@@ -29,6 +32,8 @@ export const Register = ( { setAlert } ) => {
             setAlert('Passwords do not match', 'danger');
         }
         else{
+            // we have access to name, email and password from the submitted formData attrib stated above
+            register ({ name, email, password });
             console.log("Success!");
         }
     };
@@ -77,7 +82,7 @@ export const Register = ( { setAlert } ) => {
                                 name="name" 
                                 value= { name } 
                                 onChange= { e => onChange(e) }
-                                required 
+                                 
                             />
                         </div>
                         <div className="form-group">
@@ -87,7 +92,7 @@ export const Register = ( { setAlert } ) => {
                                 name="email" 
                                 value= { email } 
                                 onChange= { e => onChange(e) }
-                                required
+                                
                             />
                             <small className="form-text">
                                 This site uses Gravatar so if you want a profile image, use a
@@ -103,7 +108,6 @@ export const Register = ( { setAlert } ) => {
                                 value= { password } 
                                 onChange= { e => onChange(e) }
                                 
-                                minLength="6"
                             />
                         </div>
                         <div className="form-group">
@@ -115,7 +119,7 @@ export const Register = ( { setAlert } ) => {
                                 value= { password2 } 
                                 onChange= { e => onChange(e) }
                                 
-                                minLength="6"
+                                
                             />
                         </div>
                         <input type="submit" className="btn btn-primary" value="Register" />
@@ -132,7 +136,8 @@ export const Register = ( { setAlert } ) => {
 };
 
 Register.propTypes = {
-    setAlert: PropTypes.func.isRequired
+    setAlert: PropTypes.func.isRequired,
+    register: PropTypes.func.isRequired,
 }
 
-export default connect(null, { setAlert }) (Register);
+export default connect(null, { setAlert, register }) (Register);
