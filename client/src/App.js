@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 // Changed Switch to Routes due to incompatibility with the latest version of React
 import {BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
@@ -15,10 +15,25 @@ import store from './store';
 
 import Alert from './components/layout/Alert';
 
+import setAuthToken from './utils/setAuthToken';
+import { loadUser } from './actions/auth';
+
+if (localStorage.token){
+  setAuthToken(localStorage.token);
+}
+
 /* The <Landing /> tag was changed from 'Landing', component was changed to element due to compatibility issues with the latest version of React*/
 /* <Provider> wrap for redux store provider */        
-const App = () => (
-  
+const App = () => {
+
+  // Study webhooks for more!
+  // whenever state updates, this will keep on running in a loop unless we pass the second (empty) value; making it run once per state change
+  useEffect(() => {
+    store.dispatch(loadUser());
+  }, []);
+
+
+  return(
   <Provider store= {store}>
     <Router>
     <Fragment>
@@ -40,5 +55,5 @@ const App = () => (
   </Router>
   </Provider>
   );
-
+};
 export default App;
