@@ -37,3 +37,5 @@ npm i uuid
 import { v4 as uuidv4 } from 'uuid'; \\ for importing uuid.v4, in this statement
 
 \\ NOTE: order of alert file calls "components\auth\Register.js" --- goes to --> "actions\alert.js" --- goes to --> "reducers\alert.js" --- goes to --> "components\layout\Alert.js"
+
+\\ NOTE: 'redirect' IN 'react-router-dom' HAS BEEN REPLACED BY 'Navigate'

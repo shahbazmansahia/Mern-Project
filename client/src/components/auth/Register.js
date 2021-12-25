@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Navigate } from 'react-router-dom'
 import { setAlert } from '../../actions/alert';
 import PropTypes from 'prop-types';
 
@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 import { register } from '../../actions/auth';
 
 
-export const Register = ( { setAlert, register } ) => {
+export const Register = ( { setAlert, register, isAuthenticated } ) => {
     
     // formData: Object which contains all the form Data
     // setFormData: function for updating state
@@ -37,6 +37,14 @@ export const Register = ( { setAlert, register } ) => {
             console.log("Success!");
         }
     };
+
+    // NOTE: REDIRECT HAS BEEN REPLACED BY NAVIGATE IN UPDATED REACT!!
+    // Redirect if login session active
+    
+    if (isAuthenticated){
+        return <Navigate to= "/dashboard" />;
+    }
+
     return (
         <Fragment>
             <html lang="en">
@@ -138,6 +146,12 @@ export const Register = ( { setAlert, register } ) => {
 Register.propTypes = {
     setAlert: PropTypes.func.isRequired,
     register: PropTypes.func.isRequired,
+    isAuthenticated: PropTypes.bool
 }
 
-export default connect(null, { setAlert, register }) (Register);
+const mapStatetoProps = state => ({
+    isAuthenticated: state.auth.isAuthenticated
+});
+
+
+export default connect(mapStatetoProps, { setAlert, register }) (Register);

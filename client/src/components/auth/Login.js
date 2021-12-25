@@ -1,7 +1,11 @@
-import React, { Fragment, useState } from 'react'
-import { Link } from 'react-router-dom'
+import React, { Fragment, useState } from 'react';
+import { Link, Navigate } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { login } from '../../actions/auth';
 
-export const Login = () => {
+// destructuring props to reduce redundant code/calls
+export const Login = ({ login, isAuthenticated }) => {
     
     // formData: Object which contains all the form Data
     // setFormData: function for updating state
@@ -17,8 +21,16 @@ export const Login = () => {
 
     const onSubmit = async e => {
         e.preventDefault();
+        login(email, password);
         console.log("Success!");
     }
+    // NOTE: REDIRECT HAS BEEN REPLACED BY NAVIGATE IN UPDATED REACT!!
+    // Redirect if login session active
+    if (isAuthenticated) {
+        return <Navigate to="/dashboard" />;
+    }
+
+
     return (
         <Fragment>
             <html lang="en">
@@ -92,5 +104,14 @@ export const Login = () => {
     )
 }
 
+Login.propTypes = {
+    login: PropTypes.func.isRequired,
+    isAuthenticated: PropTypes.bool
+}
 
-export default Login
+// similar to how we did this in alert
+const mapStatetoProps = state => ({
+    isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect( mapStatetoProps, { login })(Login);
