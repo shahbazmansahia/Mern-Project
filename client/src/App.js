@@ -18,6 +18,9 @@ import Alert from './components/layout/Alert';
 import setAuthToken from './utils/setAuthToken';
 import { loadUser } from './actions/auth';
 
+import Dashboard from './components/dashboard/Dashboard';
+import PrivateRoute from './components/routing/PrivateRoute';
+
 if (localStorage.token){
   setAuthToken(localStorage.token);
 }
@@ -32,7 +35,7 @@ const App = () => {
     store.dispatch(loadUser());
   }, []);
 
-
+  // FIXME: PRIVATEROUTE NOT WORKING/MAKING THE PAGE CRASH
   return(
   <Provider store= {store}>
     <Router>
@@ -46,6 +49,7 @@ const App = () => {
           <Routes>
             <Route exact path='/register' element = {<Register />} />
             <Route exact path='/login' element = {<Login />} />
+            <PrivateRoute exact path='/dashboard' element = {<Dashboard />} />
           </Routes>
         
         </section>
