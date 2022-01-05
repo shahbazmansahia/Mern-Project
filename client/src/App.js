@@ -35,7 +35,8 @@ const App = () => {
     store.dispatch(loadUser());
   }, []);
 
-  // FIXME: PRIVATEROUTE NOT WORKING/MAKING THE PAGE CRASH
+  // FIXME: PRIVATEROUTE NOT NAVIGATING TO LOGIN AFTER SUCCESSFUL LOGIN
+  //        Partially fixed with the help of : https://dev.to/iamandrewluca/private-route-in-react-router-v6-lg5
   return(
   <Provider store= {store}>
     <Router>
@@ -49,7 +50,10 @@ const App = () => {
           <Routes>
             <Route exact path='/register' element = {<Register />} />
             <Route exact path='/login' element = {<Login />} />
-            <PrivateRoute exact path='/dashboard' element = {<Dashboard />} />
+            <Route path='/dashboard' element= {
+              <PrivateRoute exact path='/dashboard' element = {<Dashboard />} />
+            } />
+            
           </Routes>
         
         </section>
