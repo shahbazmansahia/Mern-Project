@@ -33,7 +33,7 @@ export const Navbar = ({ auth: {isAuthenticated, loading }, logout}) => {
   );
 
   return (
-    <nav className="navbar bg-dark">
+    <nav className="navbar bg-dark w-100">
       <h1>
         <Link to="/">
             <i className="fas fa-code"></i> DevConnector
