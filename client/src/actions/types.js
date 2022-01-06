@@ -16,3 +16,5 @@ export const LOGOUT = 'LOGOUT';
 // for profile reducers and get current profiles
 export const GET_PROFILE = 'GET_PROFILE';
 export const PROFILE_ERROR = 'PROFILE_ERROR';
+// for sanitizing profile data after logout
+export const CLEAR_PROFILE = 'CLEAR_PROFILE';

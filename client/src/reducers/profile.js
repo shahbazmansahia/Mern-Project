@@ -1,6 +1,7 @@
 import {
     GET_PROFILE,
-    PROFILE_ERROR
+    PROFILE_ERROR,
+    CLEAR_PROFILE
 } from '../actions/types';
 /*
     profile: gets all of *our* profile data and when needed, gets the other user's profile (the one we might visit)
@@ -37,6 +38,13 @@ export default function(state = initialState, action) {
                 loading: false
             };
         
+        case CLEAR_PROFILE:
+            return {
+                ...state,
+                profile: null,
+                repos: [],
+                loading: false
+            }
         default:
             return state;
     }
