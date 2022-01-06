@@ -13,3 +13,6 @@ export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAIL = 'LOGIN_FAIL';
 // for implementing Logout
 export const LOGOUT = 'LOGOUT';
+// for profile reducers and get current profiles
+export const GET_PROFILE = 'GET_PROFILE';
+export const PROFILE_ERROR = 'PROFILE_ERROR';
