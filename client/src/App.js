@@ -19,7 +19,10 @@ import setAuthToken from './utils/setAuthToken';
 import { loadUser } from './actions/auth';
 
 import Dashboard from './components/dashboard/Dashboard';
+// FIX ME: PrivateRoute usage like this has been depricated in newer react/JS libraries
 import PrivateRoute from './components/routing/PrivateRoute';
+
+import CreateProfile from './components/profile-forms/CreateProfile';
 
 if (localStorage.token){
   setAuthToken(localStorage.token);
@@ -54,10 +57,16 @@ const App = () => {
             {
               /* NOTE: GET RID OF CURLY BRACES AND INSERT THIS INSTEAD OF THE DASHBOARD ROUTE FOR INITIAL 
                        RESULTS/APPROACH. PUTTING THIS HERE TO UNDERSTAND IT LATER
-               <Route path='/dashboard' element= {
+              <Route path='/dashboard' element= {
               <PrivateRoute exact path='/dashboard' element = {<Dashboard />} />
             } />*/
             }
+            {/* NOTE: THE FOLLOWING IS ALSO SUPPOSED TO BE A PRIVATE ROUTE
+                <Route path='/create-profile' element= {
+                <PrivateRoute exact path='/create-profile' element = {<CreateProfile />} />
+            } />
+            */}
+            <Route path='/create-profile' element= {<CreateProfile />} />
           </Routes>
         
         </section>
