@@ -1,8 +1,10 @@
 import React, { Fragment, useState } from 'react';
+import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { createProfile} from '../../actions/profile';
 
-const CreateProfile = props => {
+const CreateProfile = ({ createProfile, history }) => {
     const [formData, setFormData] = useState({
         company: '',
         website: '',
@@ -40,7 +42,11 @@ const CreateProfile = props => {
     // init onChange for form status vals
     const onChange = e => setFormData ({ ...formData, [e.target.name]: e.target.value });
 
-
+    // init onSubmit for implementing propTypes and property submission 
+    const onSubmit = e => {
+        e.preventDefault();
+        createProfile(form, history);
+        }
     return (
         <Fragment>
             <h1 className="large text-primary">
@@ -154,10 +160,11 @@ const CreateProfile = props => {
             </form>    
         </Fragment>
     );
-}
+};
 
 CreateProfile.propTypes = {
+    createProfile: PropTypes.func.isRequired
+};
 
-}
-
-export default CreateProfile
+// connect() is to connect it to our redux application store; 1st value null here as we don't need mapStateToProps implemented in this action/file/mode 
+export default connect(null, { createProfile })(CreateProfile);
