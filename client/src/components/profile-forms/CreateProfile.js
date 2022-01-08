@@ -1,8 +1,9 @@
 import React, { Fragment, useState } from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { createProfile} from '../../actions/profile';
+import { createProfileAct } from '../../actions/profile';
 
 const CreateProfile = ({ createProfile, history }) => {
     const [formData, setFormData] = useState({
@@ -45,7 +46,7 @@ const CreateProfile = ({ createProfile, history }) => {
     // init onSubmit for implementing propTypes and property submission 
     const onSubmit = e => {
         e.preventDefault();
-        createProfile(form, history);
+        createProfile(formData, history);
         }
     return (
         <Fragment>
@@ -57,7 +58,7 @@ const CreateProfile = ({ createProfile, history }) => {
                 profile stand out
             </p>
             <small>* = required field</small>
-            <form className="form">
+            <form className="form" onSubmit= { e => onSubmit(e) }>
                 <div className="form-group">
                     <select name="status" value= { status } onChange= {e => onChange(e)}>
                         <option value="0">* Select Professional Status</option>
@@ -167,4 +168,4 @@ CreateProfile.propTypes = {
 };
 
 // connect() is to connect it to our redux application store; 1st value null here as we don't need mapStateToProps implemented in this action/file/mode 
-export default connect(null, { createProfile })(CreateProfile);
+export default connect(null, { createProfileAct })(withRouter(CreateProfile));
