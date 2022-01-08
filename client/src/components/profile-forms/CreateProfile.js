@@ -1,11 +1,10 @@
 import React, { Fragment, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { withRouter } from 'react-router';
+import { Link, useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createProfileAct } from '../../actions/profile';
 
-const CreateProfile = ({ createProfile, history }) => {
+const CreateProfile = ({ CreateProfile, navigate }) => {
     const [formData, setFormData] = useState({
         company: '',
         website: '',
@@ -40,13 +39,17 @@ const CreateProfile = ({ createProfile, history }) => {
         instagram
     } = formData;
 
+    // Since we now use React Router 6 with hooks and withRouter has been deprecated
+    const navigate = useNavigate();
+
     // init onChange for form status vals
     const onChange = e => setFormData ({ ...formData, [e.target.name]: e.target.value });
 
     // init onSubmit for implementing propTypes and property submission 
     const onSubmit = e => {
         e.preventDefault();
-        createProfile(formData, history);
+        // replacing history with navigate since we're working with react router v6
+        createProfileAct(formData, navigate);
         }
     return (
         <Fragment>
@@ -168,4 +171,4 @@ CreateProfile.propTypes = {
 };
 
 // connect() is to connect it to our redux application store; 1st value null here as we don't need mapStateToProps implemented in this action/file/mode 
-export default connect(null, { createProfileAct })(withRouter(CreateProfile));
+export default connect(null, { createProfileAct })(CreateProfile);
