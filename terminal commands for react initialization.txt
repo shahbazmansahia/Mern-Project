@@ -41,3 +41,8 @@ import { v4 as uuidv4 } from 'uuid'; \\ for importing uuid.v4, in this statement
 \\ NOTE: 'redirect' IN 'react-router-dom' HAS BEEN REPLACED BY 'Navigate'
 
 \\ NOTE: 'withRouter' and 'history'/'history.push()' have been replaced with 'useNavigate' and 'navigate' respectively as a part of react router v6.
+
+\\ ------- THE FOLLOWING IS DUE TO REACT ROUTER V5 --> V6 ADAPTION 
+\\ NOTE: outer <Fragment> has been changed to/now uses <section className=xx> value
+\\ NOTE: UseEffect() is now used to check for data gets and other checks (history??), useNavigate is used for navigation (redirection)
+\\ NOTE: 'e => onChange (e)' is now simply replaced with 'onChange'; not even the method/function, just onChange. Same goes for (similarly declared) onSubmit
