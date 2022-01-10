@@ -15,7 +15,8 @@ const Dashboard = ({ getCurrProfile, auth: { user }, profile: { profile, loading
     useEffect(() => {
         getCurrProfile();
     }, [getCurrProfile]);
-
+    
+    // FIX ME: alt. ternary route not loading on login 
     return (
         <section className="container">
             <h1 className="large text-primary">Dashboard</h1>
