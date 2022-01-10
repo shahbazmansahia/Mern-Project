@@ -9,7 +9,7 @@ import {
 // importing due to use of webhooks and react router v6
 import { Navigate } from 'react-router-dom';
 // Get curr user's profile
-export const getCurrProfile = () => async dispatch => {
+export const getCurrProfile = () => async (dispatch) => {
     try{
         const res = await axios.get('./api/profile/me');
 
@@ -47,7 +47,7 @@ export const createProfileAct = (formData, Navigate, edit = false) => async disp
             payload: res.data
         });
 
-        dispatch (setAlert(edit ? 'Profile Updated' : 'Profile Created'));
+        dispatch (setAlert(edit ? 'Profile Updated' : 'Profile Created', 'success'));
 
         // since this is an action, we can't just use <Navigate to= xx> and call it a day!
         // NOTE: replacing history.push() with navigate() due to use of React Router 6 and deprecation of history and withRouter 

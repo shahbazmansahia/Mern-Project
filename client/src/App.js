@@ -23,7 +23,8 @@ import Dashboard from './components/dashboard/Dashboard';
 import PrivateRoute from './components/routing/PrivateRoute';
 
 // outdated; replaced with ProfileForm
-//import CreateProfile from './components/profile-forms/CreateProfile';
+// import CreateProfile from './components/profile-forms/CreateProfile';
+// import EditProfile from './components/profile-forms/EditProfile';
 
 // replacement for CreateProfile
 import ProfileForm from './components/profile-forms/ProfileForm';
@@ -56,9 +57,18 @@ const App = () => {
         <section className = "container">
           <Alert />
           <Routes>
-            <Route exact path='/register' element = {<Register />} />
-            <Route exact path='/login' element = {<Login />} />
-            <Route path='dashboard' element= {<PrivateRoute component= {Dashboard}/>} />
+            <Route 
+              exact path='/register' 
+              element = {<Register />} 
+            />
+            <Route 
+              exact path='/login' 
+              element = {<Login />} 
+            />
+            <Route 
+              path='dashboard' 
+              element= {<PrivateRoute component= {Dashboard}/>} 
+            />
             {// omitted for testing
              //<Route path='dashboard' element= {<PrivateRoute component= {Dashboard} />} />            
             }
@@ -74,7 +84,14 @@ const App = () => {
                 <PrivateRoute exact path='/create-profile' element = {<CreateProfile />} />
             } />
             */}
-            <Route path='create-profile' element= {<PrivateRoute component= {ProfileForm}/>} />
+            <Route 
+              path='create-profile' 
+              element= {<PrivateRoute component= {ProfileForm}/>} 
+            />
+            <Route 
+              path='edit-profile' 
+              element= {<PrivateRoute component= {ProfileForm}/>} 
+            />
           </Routes>
         
         </section>

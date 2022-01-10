@@ -8,26 +8,53 @@ import Spinner from '../layout/Spinner';
 
 import { Link } from 'react-router-dom';
 
+import DashboardActions from './DashboardActions';
+
 // Pulling out profile and loading from profile
 const Dashboard = ({ getCurrProfile, auth: { user }, profile: { profile, loading }}) => {
     useEffect(() => {
         getCurrProfile();
-    }, []);
-    
+    }, [getCurrProfile]);
+
+    return (
+        <section className="container">
+            <h1 className="large text-primary">Dashboard</h1>
+            <p className="lead">
+                <i className="fas fa-user" /> Welcome {user && user.name}
+            </p>
+            {profile !== null ? (
+                <>
+                <DashboardActions />
+                </>
+            ) : (
+                <>
+                    <p>You have yet to setup a profile. Please do so as early as possible.</p>
+                    <Link to= "/create-profile" className = "btn btn-primary my-1">
+                        Create Profile
+                    </Link>
+                </>
+            )}
+        </section>
+    );
+    /* NOTE: DEPRECATED CODE. REPLACED WITH CODE COMPATIBLE WITH REACT ROUTER V6
     return loading && profile === null ? <Spinner /> : <Fragment>
         <h1 className = "large text-primary">Dashboard</h1>
         <p className="lead">
             <i className="fas fa-user"></i> Welcome { user && user.name }
         </p>
-        { profile !== null ? <Fragment>has</Fragment> : 
-        <Fragment>
-            <p>You have yet to setup a profile. Please do so as early as possible.</p>
-            <Link to= "/create-profile" className = "btn btn-primary my-1">
-                Create Profile
-            </Link>
-        </Fragment> }
+        { profile !== null ? 
+            <Fragment> 
+                <DashboardActions /> 
+            </Fragment> : 
+            <Fragment>
+                <p>You have yet to setup a profile. Please do so as early as possible.</p>
+                <Link to= "/create-profile" className = "btn btn-primary my-1">
+                    Create Profile
+                </Link>
+            </Fragment> }
     </Fragment>;
-}
+    */
+};
 
 Dashboard.propTypes = {
  getCurrProfile: PropTypes.func.isRequired,
@@ -35,7 +62,7 @@ Dashboard.propTypes = {
  profile: PropTypes.object.isRequired
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     auth: state.auth,
     profile: state.profile
 });

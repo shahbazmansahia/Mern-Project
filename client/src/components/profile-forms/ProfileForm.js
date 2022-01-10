@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import { createProfileAct, getCurrProfile } from '../../actions/profile';
 
 
-console.log("Profile form opened.");
 /**
  *  Mostly based on the the values we got on Create Profile and vals we passed via the API on the backend 
  */
@@ -86,17 +85,21 @@ const ProfileForm = ({
     
     const onSubmit = (e) => {
         e.preventDefault();
-        createProfileAct(formData, navigate);
+        createProfileAct(formData, navigate, profile ? true : false);
     };
     // return value(s) picked up from CreateProfile
     return(
-        <Fragment>
+        <section className = "container">
             <h1 className="large text-primary">
-            Create Your Profile
+            {creatingProfile? 'Create Your Profile' : 'Edit Your Profile'}
             </h1>
             <p className="lead">
-                <i className="fas fa-user"></i> Let's get some information to make your
-                profile stand out
+                <i className="fas fa-user"></i> 
+                {creatingProfile ? 
+                `Let's get some information to make your
+                profile stand out`
+                : 'Update your profile'
+                }
             </p>
             <small>* = required field</small>
             <form className="form" onSubmit= { onSubmit }>
@@ -131,7 +134,7 @@ const ProfileForm = ({
                 <div className="form-group">
                     <input type="text" placeholder="Location" name="location" value= { location } onChange = { onChange }/>
                     <small className="form-text">
-                        City & state suggested (eg. Boston, MA)
+                        City & state suggested (eg. Patiala, PB)
                     </small>
                 </div>
                 <div className="form-group">
@@ -168,7 +171,7 @@ const ProfileForm = ({
                 <span>Optional</span>
                 </div>
                 
-                 {displaySocialInputs && 
+                 {displaySocialInputs && (
                     <Fragment>
                         <div className="form-group social-input">
                             <i className="fab fa-twitter fa-2x"></i>
@@ -194,13 +197,14 @@ const ProfileForm = ({
                             <i className="fab fa-instagram fa-2x"></i>
                             <input type="text" placeholder="Instagram URL" name="instagram" value= { instagram } onChange = { onChange }/>
                         </div>
-                     </Fragment>}   
+                     </Fragment>
+                     )}   
 
                 
                 <input type="submit" className="btn btn-primary my-1" />
                 <Link className="btn btn-light my-1" to="dashboard.html">Go Back</Link>
             </form>    
-        </Fragment>
+        </section>
     ); 
 };
 
