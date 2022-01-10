@@ -58,7 +58,7 @@ const App = () => {
           <Routes>
             <Route exact path='/register' element = {<Register />} />
             <Route exact path='/login' element = {<Login />} />
-            <Route path='dashboard' element= {<Dashboard />} />
+            <Route path='dashboard' element= {<PrivateRoute component= {Dashboard}/>} />
             {// omitted for testing
              //<Route path='dashboard' element= {<PrivateRoute component= {Dashboard} />} />            
             }
@@ -74,7 +74,7 @@ const App = () => {
                 <PrivateRoute exact path='/create-profile' element = {<CreateProfile />} />
             } />
             */}
-            <Route path='/create-profile' element= {<ProfileForm />} />
+            <Route path='create-profile' element= {<PrivateRoute component= {ProfileForm}/>} />
           </Routes>
         
         </section>

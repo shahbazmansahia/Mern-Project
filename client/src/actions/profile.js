@@ -23,7 +23,7 @@ export const getCurrProfile = () => async dispatch => {
             payload: { msg: error.response.statusText, status: error.response.status }
         });
     }
-}
+};
 
 /**
  * 
@@ -40,7 +40,7 @@ export const createProfileAct = (formData, Navigate, edit = false) => async disp
             }
         }
 
-        const res = await axios.post('/api/profile', formData, config);
+        const res = await axios.post('/api/profile/me', formData, config);
 
         dispatch ({
             type: GET_PROFILE,
@@ -68,4 +68,4 @@ export const createProfileAct = (formData, Navigate, edit = false) => async disp
             payload: { msg: error.response.statusText, status: error.response.status }
         });
     }
-}
+};

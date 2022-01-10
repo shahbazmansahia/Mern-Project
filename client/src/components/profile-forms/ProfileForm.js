@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { createProfileAct, getCurrProfile } from '../../actions/profile';
 
 
+console.log("Profile form opened.");
 /**
  *  Mostly based on the the values we got on Create Profile and vals we passed via the API on the backend 
  */
@@ -197,7 +198,7 @@ const ProfileForm = ({
 
                 
                 <input type="submit" className="btn btn-primary my-1" />
-                <Link className="btn btn-light my-1" href="dashboard.html">Go Back</Link>
+                <Link className="btn btn-light my-1" to="dashboard.html">Go Back</Link>
             </form>    
         </Fragment>
     ); 
