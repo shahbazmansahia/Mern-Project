@@ -31,6 +31,9 @@ import ProfileForm from './components/profile-forms/ProfileForm';
 
 // for adding experience field/data to profile
 import AddExperience from './components/profile-forms/AddExperience';
+// for adding education field/data to profile
+import AddEducation from './components/profile-forms/AddEducation';
+
 
 if (localStorage.token){
   setAuthToken(localStorage.token);
@@ -98,6 +101,11 @@ const App = () => {
               path='add-experience' 
               element= {<PrivateRoute component= {AddExperience}/>} 
             />
+            <Route 
+              path='add-education' 
+              element= {<PrivateRoute component= {AddEducation}/>} 
+            />
+
           </Routes>
         
         </section>

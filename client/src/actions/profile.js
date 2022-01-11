@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { setAlert } from './alert';
+import api from '../utils/api';
 
 import {
     GET_PROFILE,
@@ -12,8 +13,10 @@ import { Navigate } from 'react-router-dom';
 // Get curr user's profile
 export const getCurrProfile = () => async (dispatch) => {
     try{
-        const res = await axios.get('./api/profile/me');
+        //const res = await axios.get('./api/profile/me');
 
+        const res = await api.get('./api/profile/me');
+        
         dispatch ({
             type: GET_PROFILE,
             payload: res.data
@@ -73,7 +76,7 @@ export const createProfileAct = (formData, Navigate, edit = false) => async disp
 
 // Add Experience
 // 'history' replaced with 'navigate' to conform with router v6 protocol
-export const addExperience = (formData, navigate) => async dispatch => {
+export const addExperience = (formData, Navigate) => async dispatch => {
     try {
         const config = {
             headers: {
@@ -113,7 +116,7 @@ export const addExperience = (formData, navigate) => async dispatch => {
 
 // Add Education
 // 'history' replaced with 'navigate' to conform with router v6 protocol
-export const Education = (formData, navigate) => async dispatch => {
+export const addEducation = (formData, Navigate) => async dispatch => {
     try {
         const config = {
             headers: {
