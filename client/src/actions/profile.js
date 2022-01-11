@@ -3,7 +3,8 @@ import { setAlert } from './alert';
 
 import {
     GET_PROFILE,
-    PROFILE_ERROR
+    PROFILE_ERROR,
+    UPDATE_PROFILE
 } from './types';
 
 // importing due to use of webhooks and react router v6
@@ -69,3 +70,82 @@ export const createProfileAct = (formData, Navigate, edit = false) => async disp
         });
     }
 };
+
+// Add Experience
+// 'history' replaced with 'navigate' to conform with router v6 protocol
+export const addExperience = (formData, navigate) => async dispatch => {
+    try {
+        const config = {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+
+        const res = await axios.put('/api/profile/experience', formData, config);
+
+        dispatch ({
+            type: UPDATE_PROFILE,
+            payload: res.data
+        });
+
+        dispatch (setAlert('Experience Added successfully!', 'success'));
+
+        // since this is an action, we can't just use <Navigate to= xx> and call it a day!
+        // NOTE: replacing history.push() with navigate() due to use of React Router 6 and deprecation of history and withRouter 
+        Navigate('/dashboard');
+
+    } catch (error) {
+        // for printing out the list of errors that might be triggered
+        const errors = error.response.data.errors;
+
+        if (errors){
+            errors.forEach(error => dispatch(setAlert(error.msg, 'danger')));
+        }
+
+        
+        dispatch({
+            type: PROFILE_ERROR,
+            payload: { msg: error.response.statusText, status: error.response.status }
+        });
+    }
+};
+
+
+// Add Education
+// 'history' replaced with 'navigate' to conform with router v6 protocol
+export const Education = (formData, navigate) => async dispatch => {
+    try {
+        const config = {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+
+        const res = await axios.put('/api/profile/education', formData, config);
+
+        dispatch ({
+            type: UPDATE_PROFILE,
+            payload: res.data
+        });
+
+        dispatch (setAlert('Education Added successfully!', 'success'));
+
+        // since this is an action, we can't just use <Navigate to= xx> and call it a day!
+        // NOTE: replacing history.push() with navigate() due to use of React Router 6 and deprecation of history and withRouter 
+        Navigate('/dashboard');
+
+    } catch (error) {
+        // for printing out the list of errors that might be triggered
+        const errors = error.response.data.errors;
+
+        if (errors){
+            errors.forEach(error => dispatch(setAlert(error.msg, 'danger')));
+        }
+
+        
+        dispatch({
+            type: PROFILE_ERROR,
+            payload: { msg: error.response.statusText, status: error.response.status }
+        });
+    }
+}

@@ -19,7 +19,7 @@ import setAuthToken from './utils/setAuthToken';
 import { loadUser } from './actions/auth';
 
 import Dashboard from './components/dashboard/Dashboard';
-// FIX ME: PrivateRoute usage like this has been depricated in newer react/JS libraries
+// PrivateRoute usage adapted for react router v6
 import PrivateRoute from './components/routing/PrivateRoute';
 
 // outdated; replaced with ProfileForm
@@ -29,6 +29,8 @@ import PrivateRoute from './components/routing/PrivateRoute';
 // replacement for CreateProfile
 import ProfileForm from './components/profile-forms/ProfileForm';
 
+// for adding experience field/data to profile
+import AddExperience from './components/profile-forms/AddExperience';
 
 if (localStorage.token){
   setAuthToken(localStorage.token);
@@ -91,6 +93,10 @@ const App = () => {
             <Route 
               path='edit-profile' 
               element= {<PrivateRoute component= {ProfileForm}/>} 
+            />
+            <Route 
+              path='add-experience' 
+              element= {<PrivateRoute component= {AddExperience}/>} 
             />
           </Routes>
         
