@@ -5,7 +5,9 @@ import api from '../utils/api';
 import {
     GET_PROFILE,
     PROFILE_ERROR,
-    UPDATE_PROFILE
+    UPDATE_PROFILE,
+    CLEAR_PROFILE,
+    ACCOUNT_DELETED
 } from './types';
 
 // importing due to use of webhooks and react router v6
@@ -152,3 +154,75 @@ export const addEducation = (formData, Navigate) => async dispatch => {
         });
     }
 }
+
+// Delete experience
+export const delExperience = id => async dispatch => {
+    if (window.confirm('Are you Sure?')){
+        try {
+            const res = await axios.delete(`/api/profile/experience/${id}`);
+            dispatch({
+                type: UPDATE_PROFILE,
+                payload: res.data
+            });
+    
+            // trigger alert upon deletion
+            dispatch (setAlert('Experience Removed', 'success'));
+    
+        } catch (error) {
+            
+            dispatch({
+                type: PROFILE_ERROR,
+                payload: { msg: error.response.statusText, status: error.response.status }
+            });
+        }
+    }
+};
+
+
+// Delete education
+export const delEducation = id => async dispatch => {
+    if (window.confirm('Are you Sure?')){
+        try {
+            const res = await axios.delete(`/api/profile/education/${id}`);
+            dispatch({
+                type: UPDATE_PROFILE,
+                payload: res.data
+            });
+    
+            // trigger alert upon deletion
+            dispatch (setAlert('Education Removed', 'success'));
+    
+        } catch (error) {
+            
+            dispatch({
+                type: PROFILE_ERROR,
+                payload: { msg: error.response.statusText, status: error.response.status }
+            });
+        }
+    }
+};
+
+// Delete Account and profile
+export const delAccount = id => async dispatch => {
+    if (window.confirm('Are you Sure? This data will not be recoverable upon deletion!')){
+        try {
+            const res = await axios.delete(`/api/profile/`);
+            dispatch({
+                type: CLEAR_PROFILE
+            });
+            dispatch({
+                type: ACCOUNT_DELETED
+            });
+            // trigger alert upon deletion
+            dispatch (setAlert('Account deleted successfully. forever. yes. forever forever. We did keep a backup of any of your stuff.', 'success'));
+
+        } catch (error) {
+            
+            dispatch({
+                type: PROFILE_ERROR,
+                payload: { msg: error.response.statusText, status: error.response.status }
+            });
+        }
+    }
+    
+};

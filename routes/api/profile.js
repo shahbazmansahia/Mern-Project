@@ -4,6 +4,7 @@ const router = express.Router();
 const auth = require('../../middleware/auth');
 const Profile = require('../../models/Profiles');
 const User = require('../../models/Users');
+const Post = require('../../models/Posts');
 
 const { check, validationResult } = require('express-validator/check'); 
 
@@ -186,7 +187,9 @@ router.get('/user/:user_id', async (req, res) => {
 
 router.delete('/', auth, async (req, res) => {
     try {
-        // @todo - remove users posts
+        // remove users posts
+        await Post.deleteMany({ user: req.user.id});
+
         // Remove profile
         await Profile.findOneAndRemove({ user: req.user.id });
         // Remove user
@@ -195,8 +198,8 @@ router.delete('/', auth, async (req, res) => {
         res.json({msg : 'User removed'});
 
     } catch (err) {
-        console.error('Get all profile error: '. err.message);
-        res.status(500).send ('Get all profiles: Server Error');
+        console.error('Delete profile error: '. err.message);
+        res.status(500).send ('Delete profile: Server Error');
     }
 });
    

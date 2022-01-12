@@ -3,9 +3,11 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 // moment is a 3rd party dependency we installed earlier
 import Moment from 'react-moment';
+
+import { delEducation } from '../../actions/profile';
 // experience gets components passed from Dashboard.js;
 // therefore, we replaced props with that
-const Education = ({ education }) => {
+const Education = ({ education, delEducation }) => {
     // we map the Education array we get from the dashboard as a component
     const educations = education.map(edu => (
         <tr key = {edu.id}>
@@ -22,7 +24,7 @@ const Education = ({ education }) => {
                 }
             </td>
             <td>
-                <button className="btn btn-danger">Delete</button>
+                <button onClick= {() => delEducation(edu._id)} className="btn btn-danger">Delete</button>
             </td>
         </tr>
     ));
@@ -46,7 +48,8 @@ const Education = ({ education }) => {
 };
 
 Education.propTypes = {
-    education: PropTypes.array.isRequired
+    education: PropTypes.array.isRequired,
+    delEducation: PropTypes.func.isRequired
 }
 
-export default Education;
+export default connect(null, { delEducation })(Education);

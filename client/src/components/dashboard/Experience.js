@@ -3,9 +3,11 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 // moment is a 3rd party dependency we installed earlier
 import Moment from 'react-moment';
+
+import { delExperience } from '../../actions/profile';
 // experience gets components passed from Dashboard.js;
 // therefore, we replaced props with that
-const Experience = ({ experience }) => {
+const Experience = ({ experience, delExperience }) => {
     // we map the experience array we get from the dashboard as a component
     const experiences = experience.map(exp => (
         <tr key = {exp.id}>
@@ -22,7 +24,7 @@ const Experience = ({ experience }) => {
                 }
             </td>
             <td>
-                <button className="btn btn-danger">Delete</button>
+                <button onClick= { () => delExperience(exp._id)} className="btn btn-danger">Delete</button>
             </td>
         </tr>
     ));
@@ -46,7 +48,8 @@ const Experience = ({ experience }) => {
 };
 
 Experience.propTypes = {
-    experience: PropTypes.array.isRequired
+    experience: PropTypes.array.isRequired,
+    delExperience: PropTypes.func.isRequired
 }
 
-export default Experience;
+export default connect(null, { delExperience }) (Experience);

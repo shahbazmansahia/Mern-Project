@@ -20,3 +20,5 @@ export const PROFILE_ERROR = 'PROFILE_ERROR';
 export const CLEAR_PROFILE = 'CLEAR_PROFILE';
 // for adding the education and experiences sections
 export const UPDATE_PROFILE = 'UPDATE_PROFILE';
+// for deleting account
+export const ACCOUNT_DELETED = 'ACCOUNT_DELETED';
