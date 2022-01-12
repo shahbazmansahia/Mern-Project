@@ -10,6 +10,9 @@ import { Link } from 'react-router-dom';
 
 import DashboardActions from './DashboardActions';
 
+import Experience from './Experience';
+import Education from './Education';
+
 // Pulling out profile and loading from profile
 const Dashboard = ({ getCurrProfile, auth: { user }, profile: { profile, loading }}) => {
     useEffect(() => {
@@ -26,6 +29,8 @@ const Dashboard = ({ getCurrProfile, auth: { user }, profile: { profile, loading
             {profile !== null ? (
                 <>
                 <DashboardActions />
+                <Experience experience= {profile.experience}/>
+                <Education education= {profile.education}/>
                 </>
             ) : (
                 <>
