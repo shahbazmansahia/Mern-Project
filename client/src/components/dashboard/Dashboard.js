@@ -1,4 +1,4 @@
-import React, { useEffect, Fragment } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getCurrProfile } from '../../actions/profile';
@@ -17,7 +17,7 @@ import Education from './Education';
 import { delAccount } from '../../actions/profile'
 
 // Pulling out profile and loading from profile
-const Dashboard = ({ getCurrProfile, auth: { user }, profile: { profile, loading }, delAccount}) => {
+const Dashboard = ({ getCurrProfile, auth: { user }, profile: { profile }, delAccount}) => {
     useEffect(() => {
         getCurrProfile();
     }, [getCurrProfile]);

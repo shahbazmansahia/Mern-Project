@@ -37,6 +37,7 @@ const ProfileForm = ({
         
         // If there is no profile, try to get one
         if (!profile){
+            console.log('Performing action to fetch profile from DB...');
             getCurrProfile();
         }
 
@@ -202,7 +203,7 @@ const ProfileForm = ({
 
                 
                 <input type="submit" className="btn btn-primary my-1" />
-                <Link className="btn btn-light my-1" to="dashboard">Go Back</Link>
+                <Link className="btn btn-light my-1" to="/dashboard">Go Back</Link>
             </form>    
         </section>
     ); 

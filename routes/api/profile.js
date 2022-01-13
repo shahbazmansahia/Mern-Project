@@ -22,11 +22,11 @@ router.get('/me', auth, async (req, res) => {
         if (!profile){
             return res.status(400).json({ msg: 'No such profile exists!'});
         }
-
+        return res.json(profile);
     }
     catch(err){
         console.error(err.message);
-        res.status(500).send('Server Error');
+        res.status(500).send('User Profile Fetch: Server Error');
     }
 });
 

@@ -14,16 +14,18 @@ import {
 import { Navigate } from 'react-router-dom';
 // Get curr user's profile
 export const getCurrProfile = () => async (dispatch) => {
+    console.log('Trying to fetch profile...');
     try{
         //const res = await axios.get('./api/profile/me');
-
-        const res = await api.get('./api/profile/me');
-        
+        // FIX ME: THE DASHBOARD LOGIN ISSUE IS ARISING FROM HERE!!
+        const res = await api.get('profile/me');
+        console.log('Profile obtained successfully!');
         dispatch ({
             type: GET_PROFILE,
             payload: res.data
         });
     }catch (error){
+        console.log('Profile fetch unsuccessful!');
         dispatch({
             type: PROFILE_ERROR,
             payload: { msg: error.response.statusText, status: error.response.status }
@@ -46,7 +48,7 @@ export const createProfileAct = (formData, Navigate, edit = false) => async disp
             }
         }
 
-        const res = await axios.post('/api/profile/me', formData, config);
+        const res = await api.post('profile/me', formData, config);
 
         dispatch ({
             type: GET_PROFILE,
@@ -86,7 +88,7 @@ export const addExperience = (formData, Navigate) => async dispatch => {
             }
         }
 
-        const res = await axios.put('/api/profile/experience', formData, config);
+        const res = await api.put('/profile/experience', formData, config);
 
         dispatch ({
             type: UPDATE_PROFILE,
@@ -126,7 +128,7 @@ export const addEducation = (formData, Navigate) => async dispatch => {
             }
         }
 
-        const res = await axios.put('/api/profile/education', formData, config);
+        const res = await api.put('/profile/education', formData, config);
 
         dispatch ({
             type: UPDATE_PROFILE,
@@ -159,7 +161,7 @@ export const addEducation = (formData, Navigate) => async dispatch => {
 export const delExperience = id => async dispatch => {
     if (window.confirm('Are you Sure?')){
         try {
-            const res = await axios.delete(`/api/profile/experience/${id}`);
+            const res = await api.delete(`/profile/experience/${id}`);
             dispatch({
                 type: UPDATE_PROFILE,
                 payload: res.data
@@ -183,7 +185,7 @@ export const delExperience = id => async dispatch => {
 export const delEducation = id => async dispatch => {
     if (window.confirm('Are you Sure?')){
         try {
-            const res = await axios.delete(`/api/profile/education/${id}`);
+            const res = await api.delete(`/profile/education/${id}`);
             dispatch({
                 type: UPDATE_PROFILE,
                 payload: res.data
@@ -206,7 +208,7 @@ export const delEducation = id => async dispatch => {
 export const delAccount = id => async dispatch => {
     if (window.confirm('Are you Sure? This data will not be recoverable upon deletion!')){
         try {
-            const res = await axios.delete(`/api/profile/`);
+            const res = await api.delete(`/profile/`);
             dispatch({
                 type: CLEAR_PROFILE
             });

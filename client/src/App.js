@@ -34,18 +34,24 @@ import AddExperience from './components/profile-forms/AddExperience';
 // for adding education field/data to profile
 import AddEducation from './components/profile-forms/AddEducation';
 
-
+/*
 if (localStorage.token){
   setAuthToken(localStorage.token);
 }
-
+*/
 /* The <Landing /> tag was changed from 'Landing', component was changed to element due to compatibility issues with the latest version of React*/
 /* <Provider> wrap for redux store provider */        
 const App = () => {
 
+  
   // Study webhooks for more!
   // whenever state updates, this will keep on running in a loop unless we pass the second (empty) value; making it run once per state change
   useEffect(() => {
+    
+    if (localStorage.token){
+      setAuthToken(localStorage.token);
+    }
+
     store.dispatch(loadUser());
   }, []);
 
@@ -54,65 +60,56 @@ const App = () => {
   return(
   <Provider store= {store}>
     <Router>
-    <Fragment>
       <Navbar />
+      <Alert />
       <Routes>
-        <Route exact path= '/' element = {<Landing />} />
-      </Routes>
-        <section className = "container">
-          <Alert />
-          <Routes>
-            <Route 
-              exact path='/register' 
-              element = {<Register />} 
-            />
-            <Route 
-              exact path='/login' 
-              element = {<Login />} 
-            />
-            <Route 
-              path='dashboard' 
-              element= {<PrivateRoute component= {Dashboard}/>} 
-            />
-            {// omitted for testing
-             //<Route path='dashboard' element= {<PrivateRoute component= {Dashboard} />} />            
-            }
-            {
-              /* NOTE: GET RID OF CURLY BRACES AND INSERT THIS INSTEAD OF THE DASHBOARD ROUTE FOR INITIAL 
-                       RESULTS/APPROACH. PUTTING THIS HERE TO UNDERSTAND IT LATER
-              <Route path='/dashboard' element= {
-              <PrivateRoute exact path='/dashboard' element = {<Dashboard />} />
-            } />*/
-            }
-            {/* NOTE: THE FOLLOWING IS ALSO SUPPOSED TO BE A PRIVATE ROUTE
-                <Route path='/create-profile' element= {
-                <PrivateRoute exact path='/create-profile' element = {<CreateProfile />} />
-            } />
-            */}
-            <Route 
-              path='create-profile' 
-              element= {<PrivateRoute component= {ProfileForm}/>} 
-            />
-            <Route 
-              path='edit-profile' 
-              element= {<PrivateRoute component= {ProfileForm}/>} 
-            />
-            <Route 
-              path='add-experience' 
-              element= {<PrivateRoute component= {AddExperience}/>} 
-            />
-            <Route 
-              path='add-education' 
-              element= {<PrivateRoute component= {AddEducation}/>} 
-            />
+        <Route exact path= '/' element = {<Landing />} />    
+          <Route 
+            exact path='register' 
+            element = {<Register />} 
+          />
+          <Route 
+            exact path='login' 
+            element = {<Login />} 
+          />
+          <Route 
+            path='dashboard' 
+            element= {<PrivateRoute component= {Dashboard}/>} 
+          />
+          {// omitted for testing
+            //<Route path='dashboard' element= {<PrivateRoute component= {Dashboard} />} />            
+          }
+          {
+            /* NOTE: GET RID OF CURLY BRACES AND INSERT THIS INSTEAD OF THE DASHBOARD ROUTE FOR INITIAL 
+                      RESULTS/APPROACH. PUTTING THIS HERE TO UNDERSTAND IT LATER
+            <Route path='/dashboard' element= {
+            <PrivateRoute exact path='/dashboard' element = {<Dashboard />} />
+          } />*/
+          }
+          {/* NOTE: THE FOLLOWING IS ALSO SUPPOSED TO BE A PRIVATE ROUTE
+              <Route path='/create-profile' element= {
+              <PrivateRoute exact path='/create-profile' element = {<CreateProfile />} />
+          } />
+          */}
+          <Route 
+            path='create-profile' 
+            element= {<PrivateRoute component= {ProfileForm}/>} 
+          />
+          <Route 
+            path='edit-profile' 
+            element= {<PrivateRoute component= {ProfileForm}/>} 
+          />
+          <Route 
+            path='add-experience' 
+            element= {<PrivateRoute component= {AddExperience}/>} 
+          />
+          <Route 
+            path='add-education' 
+            element= {<PrivateRoute component= {AddEducation}/>} 
+          />
 
-          </Routes>
-        
-        </section>
-           
-    </Fragment>
-  
-  </Router>
+      </Routes>    
+    </Router>
   </Provider>
   );
 };
