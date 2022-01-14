@@ -7,7 +7,9 @@ import {
     PROFILE_ERROR,
     UPDATE_PROFILE,
     CLEAR_PROFILE,
-    ACCOUNT_DELETED
+    ACCOUNT_DELETED,
+    GET_PROFILES,
+    GET_REPOS
 } from './types';
 
 // importing due to use of webhooks and react router v6
@@ -16,16 +18,87 @@ import { Navigate } from 'react-router-dom';
 export const getCurrProfile = () => async (dispatch) => {
     console.log('Trying to fetch profile...');
     try{
-        //const res = await axios.get('./api/profile/me');
-        // FIX ME: THE DASHBOARD LOGIN ISSUE IS ARISING FROM HERE!!
         const res = await api.get('profile/me');
-        console.log('Profile obtained successfully!');
+        //console.log('Profile obtained successfully!');
         dispatch ({
             type: GET_PROFILE,
             payload: res.data
         });
     }catch (error){
-        console.log('Profile fetch unsuccessful!');
+        //console.log('Profile fetch unsuccessful!');
+        dispatch({
+            type: PROFILE_ERROR,
+            payload: { msg: error.response.statusText, status: error.response.status }
+        });
+    }
+};
+
+// Get All profiles
+export const getProfiles = () => async (dispatch) => {
+    console.log('Trying to fetch profiles...');
+    
+    // to clear current profile data
+    dispatch ({ type: CLEAR_PROFILE });
+
+    try{
+
+        const res = await api.get('profile/');
+        //console.log('Profiles obtained successfully!');
+        dispatch ({
+            type: GET_PROFILES,
+            payload: res.data
+        });
+    }catch (error){
+        //console.log('All Profile fetch unsuccessful!');
+        dispatch({
+            type: PROFILE_ERROR,
+            payload: { msg: error.response.statusText, status: error.response.status }
+        });
+    }
+};
+
+// Get profile by user ID
+export const getProfileById = userID => async (dispatch) => {
+    console.log('Trying to fetch profile...');
+    
+    // to clear current profile data
+    dispatch ({ type: CLEAR_PROFILE });
+
+    try{
+
+        const res = await api.get(`profile/user/${userID}`);
+        //console.log('Profile obtained successfully!');
+        dispatch ({
+            type: GET_PROFILE,
+            payload: res.data
+        });
+    }catch (error){
+        //console.log('Profile fetch unsuccessful!');
+        dispatch({
+            type: PROFILE_ERROR,
+            payload: { msg: error.response.statusText, status: error.response.status }
+        });
+    }
+};
+
+
+// Get github repos 
+export const getGitRepo = username => async (dispatch) => {
+    console.log('Trying to repo...');
+    
+    // to clear current profile data
+    dispatch ({ type: CLEAR_PROFILE });
+
+    try{
+
+        const res = await api.get(`/api/profile/github/${username}`);
+        //console.log('Profile obtained successfully!');
+        dispatch ({
+            type: GET_REPOS,
+            payload: res.data
+        });
+    }catch (error){
+        //console.log('Profile fetch unsuccessful!');
         dispatch({
             type: PROFILE_ERROR,
             payload: { msg: error.response.statusText, status: error.response.status }
@@ -228,3 +301,4 @@ export const delAccount = id => async dispatch => {
     }
     
 };
+

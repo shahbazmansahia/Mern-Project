@@ -55,8 +55,7 @@ const App = () => {
     store.dispatch(loadUser());
   }, []);
 
-  // FIXME: PRIVATEROUTE NOT WORKING. IT DOES WORK AS NORMAL ROUTE THOUGH!
-  //        Partially fixed with the help of : https://dev.to/iamandrewluca/private-route-in-react-router-v6-lg5
+  // Partially fixed with the help of : https://dev.to/iamandrewluca/private-route-in-react-router-v6-lg5
   return(
   <Provider store= {store}>
     <Router>

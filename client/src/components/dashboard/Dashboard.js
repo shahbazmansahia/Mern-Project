@@ -22,7 +22,6 @@ const Dashboard = ({ getCurrProfile, auth: { user }, profile: { profile }, delAc
         getCurrProfile();
     }, [getCurrProfile]);
     
-    // FIX ME: alt. ternary route not loading on login status 
     return (
         <section className="container">
             <h1 className="large text-primary">Dashboard</h1>
