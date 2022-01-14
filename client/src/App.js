@@ -34,6 +34,7 @@ import AddExperience from './components/profile-forms/AddExperience';
 // for adding education field/data to profile
 import AddEducation from './components/profile-forms/AddEducation';
 
+import Profiles from './components/profiles/Profiles'
 /*
 if (localStorage.token){
   setAuthToken(localStorage.token);
@@ -70,6 +71,10 @@ const App = () => {
           <Route 
             exact path='login' 
             element = {<Login />} 
+          />
+          <Route 
+            exact path='profiles' 
+            element = {<Profiles />} 
           />
           <Route 
             path='dashboard' 
