@@ -61,9 +61,6 @@ export const getProfiles = () => async (dispatch) => {
 export const getProfileById = userID => async (dispatch) => {
     console.log('Trying to fetch profile...');
     
-    // to clear current profile data
-    dispatch ({ type: CLEAR_PROFILE });
-
     try{
 
         const res = await api.get(`profile/user/${userID}`);
@@ -84,11 +81,8 @@ export const getProfileById = userID => async (dispatch) => {
 
 // Get github repos 
 export const getGitRepo = username => async (dispatch) => {
-    console.log('Trying to repo...');
+    console.log('Trying to get repo...');
     
-    // to clear current profile data
-    dispatch ({ type: CLEAR_PROFILE });
-
     try{
 
         const res = await api.get(`/api/profile/github/${username}`);

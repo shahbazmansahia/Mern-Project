@@ -23,7 +23,8 @@ const Profiles = ({ getProfiles, profile: { profiles, loading } }) => {
                         <i className="fab fa-connectdevelop"/> Browse and connect with developers
                     </p>
                     <div className="profiles">
-                        {console.log(` Profiles at disposal: ${profiles.length}`)}
+                        {//console.log(` Profiles at disposal: ${profiles.length}`)
+                        }
                         {// FIX ME: THIS PROFILES => PROFILE MAP COMPONENT IS BREAKING THE CODE! IT FETCHES NULL AS PROFILE (I SUSPECT IT FETCHES THE singular and deleted null curr profile obj.)
                         // check if any profiles even exist; if the do, render them. if not, print 'no profiles found' statement
                         profiles.length > 0 ? (

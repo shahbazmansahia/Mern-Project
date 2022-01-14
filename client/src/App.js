@@ -33,8 +33,10 @@ import ProfileForm from './components/profile-forms/ProfileForm';
 import AddExperience from './components/profile-forms/AddExperience';
 // for adding education field/data to profile
 import AddEducation from './components/profile-forms/AddEducation';
+// for fetching all profiles in DB
+import Profiles from './components/profiles/Profiles';
+import Profile from './components/profile/Profile';
 
-import Profiles from './components/profiles/Profiles'
 /*
 if (localStorage.token){
   setAuthToken(localStorage.token);
@@ -75,6 +77,10 @@ const App = () => {
           <Route 
             exact path='profiles' 
             element = {<Profiles />} 
+          />
+          <Route 
+            exact path='profile/:id' 
+            element = {<Profile />} 
           />
           <Route 
             path='dashboard' 
