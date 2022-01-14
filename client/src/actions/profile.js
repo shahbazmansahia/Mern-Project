@@ -38,7 +38,7 @@ export const getProfiles = () => async (dispatch) => {
     console.log('Trying to fetch profiles...');
     
     // to clear current profile data
-    dispatch ({ type: CLEAR_PROFILE });
+    //dispatch ({ type: CLEAR_PROFILE });
 
     try{
 

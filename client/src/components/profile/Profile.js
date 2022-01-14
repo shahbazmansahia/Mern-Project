@@ -4,6 +4,10 @@ import { connect } from 'react-redux';
 import Spinner from '../layout/Spinner';
 import { getProfileById } from '../../actions/profile';
 import { Link, useParams } from 'react-router-dom';
+// for profile top and socials
+import ProfileTop from './ProfileTop';
+// for profile about section
+import ProfileAbout from './ProfileAbout';
 
 const Profile = ({ 
     getProfileById, 
@@ -32,6 +36,13 @@ const Profile = ({
                             Edit Profile
                         </Link>
                     )}
+                    
+                    <div className="profile-grid my-1">
+                        <ProfileTop profile= {profile}/>
+                        <ProfileAbout profile= {profile}/>
+                        
+                    </div>
+                    
                 </Fragment>
                 )}
         </section>
