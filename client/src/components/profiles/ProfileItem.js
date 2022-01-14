@@ -13,7 +13,16 @@ const ProfileItem = ({
         skills
     }
 }) => {
+    
     console.log ('accessing profile items...');
+    /* Data for testing
+    console.log (`id: ${_id}` );
+    
+    console.log (`name: ${name}` );
+    console.log (`status: ${status}` );
+    console.log (`company: ${company}` );
+    console.log (`location: ${location}` );
+    */
     return (
         /*
         // for testing...
