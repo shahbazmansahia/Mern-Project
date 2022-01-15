@@ -8,6 +8,10 @@ import { Link, useParams } from 'react-router-dom';
 import ProfileTop from './ProfileTop';
 // for profile about section
 import ProfileAbout from './ProfileAbout';
+// for profile experience section
+import ProfileExperience from './ProfileExperience'; 
+// for profile education section
+import ProfileEducation from './ProfileEducation';
 
 const Profile = ({ 
     getProfileById, 
@@ -40,7 +44,30 @@ const Profile = ({
                     <div className="profile-grid my-1">
                         <ProfileTop profile= {profile}/>
                         <ProfileAbout profile= {profile}/>
-                        
+                        <div className="profile-exp bg-white p-2">
+                            <h2 className="tect-primary">Experience</h2>
+                            {profile.experience.length > 0 ? (
+                                <Fragment>
+                                    {profile.experience.map(experience => (
+                                    <ProfileExperience key={experience._id} experience= {experience}/>
+                                ))}
+                                </Fragment>
+                            ) : (
+                            <h4>No Experience credentials</h4>
+                            )}
+                        </div>
+                        <div className="profile-edu bg-white p-2">
+                            <h2 className="tect-primary">Education</h2>
+                            {profile.education.length > 0 ? (
+                                <Fragment>
+                                    {profile.education.map(education => (
+                                    <ProfileEducation key={education._id} education= {education}/>
+                                ))}
+                                </Fragment>
+                            ) : (
+                            <h4>No Education credentials</h4>
+                            )}
+                        </div>
                     </div>
                     
                 </Fragment>
