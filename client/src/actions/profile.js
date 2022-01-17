@@ -85,8 +85,8 @@ export const getGitRepo = username => async (dispatch) => {
     
     try{
 
-        const res = await api.get(`/api/profile/github/${username}`);
-        //console.log('Profile obtained successfully!');
+        const res = await api.get(`profile/github/${username}`);
+        console.log('Profile repo obtained successfully!');
         dispatch ({
             type: GET_REPOS,
             payload: res.data

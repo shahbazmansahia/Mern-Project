@@ -12,6 +12,8 @@ import ProfileAbout from './ProfileAbout';
 import ProfileExperience from './ProfileExperience'; 
 // for profile education section
 import ProfileEducation from './ProfileEducation';
+// for profile github username section
+import ProfileGithub from './ProfileGithub'
 
 const Profile = ({ 
     getProfileById, 
@@ -45,7 +47,7 @@ const Profile = ({
                         <ProfileTop profile= {profile}/>
                         <ProfileAbout profile= {profile}/>
                         <div className="profile-exp bg-white p-2">
-                            <h2 className="tect-primary">Experience</h2>
+                            <h2 className="text-primary">Experience</h2>
                             {profile.experience.length > 0 ? (
                                 <Fragment>
                                     {profile.experience.map(experience => (
@@ -57,7 +59,7 @@ const Profile = ({
                             )}
                         </div>
                         <div className="profile-edu bg-white p-2">
-                            <h2 className="tect-primary">Education</h2>
+                            <h2 className="text-primary">Education</h2>
                             {profile.education.length > 0 ? (
                                 <Fragment>
                                     {profile.education.map(education => (
@@ -68,8 +70,11 @@ const Profile = ({
                             <h4>No Education credentials</h4>
                             )}
                         </div>
+
+                        {profile.githubusername && (
+                            <ProfileGithub username={profile.githubusername} />
+                        )}
                     </div>
-                    
                 </Fragment>
                 )}
         </section>
