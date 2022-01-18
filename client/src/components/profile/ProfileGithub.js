@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { getGitRepo } from '../../actions/profile';
 import Spinner from '../layout/Spinner';
 
+// FIX ME: THIS COMPONENT IS BREAKING THE INDIV. PROFILE PAGE!
 const ProfileGithub = ({ username, getGitRepo, repos}) => {
     useEffect (() => {
         getGitRepo(username);

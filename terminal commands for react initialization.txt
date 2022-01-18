@@ -46,3 +46,5 @@ import { v4 as uuidv4 } from 'uuid'; \\ for importing uuid.v4, in this statement
 \\ NOTE: outer <Fragment> has been changed to/now uses <section className=xx> value
 \\ NOTE: UseEffect() is now used to check for data gets and other checks (history??), useNavigate is used for navigation (redirection)
 \\ NOTE: 'e => onChange (e)' is now simply replaced with 'onChange'; not even the method/function, just onChange. Same goes for (similarly declared) onSubmit
+
+\\ WORKFLOW for new redux components: Define new Reducer --> define new Action(s) --> Define new component(s)

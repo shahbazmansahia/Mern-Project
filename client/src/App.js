@@ -36,6 +36,8 @@ import AddEducation from './components/profile-forms/AddEducation';
 // for fetching all profiles in DB
 import Profiles from './components/profiles/Profiles';
 import Profile from './components/profile/Profile';
+// for fetching user posts from db
+import Posts from './components/Posts/Posts';
 
 /*
 if (localStorage.token){
@@ -117,7 +119,10 @@ const App = () => {
             path='add-education' 
             element= {<PrivateRoute component= {AddEducation}/>} 
           />
-
+          <Route 
+            path='posts' 
+            element= {<PrivateRoute component= {Posts}/>} 
+          />
       </Routes>    
     </Router>
   </Provider>
