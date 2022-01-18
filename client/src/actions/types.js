@@ -29,3 +29,7 @@ export const GET_REPOS = 'GET_REPOS';
 // for getting posts
 export const GET_POSTS = 'GET_POSTS';
 export const POST_ERROR = 'POST_ERROR';
+// for implementing likes and unlikes
+export const UPDATE_LIKES = 'UPDATE_LIKES';
+// for deleting and adding posts
+export const DELETE_POST = 'DELETE_POST';
