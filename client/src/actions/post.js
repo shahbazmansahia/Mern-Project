@@ -6,6 +6,7 @@ import {
     GET_POSTS,
     POST_ERROR,
     UPDATE_LIKES,
+    GET_POST
 } from './types';
 
 // Get Posts
@@ -102,5 +103,24 @@ export const addPost = formData => async dispatch=> {
             type: POST_ERROR,
             payload: { msg: error.response.statusText, status: error.response.status }
         })
+    }
+};
+
+// Get (singular!) Post
+export const getPost = postId => async dispatch => {
+    try {
+        const res = await api.get(`/posts/${postId}`);
+
+        dispatch ({
+            type: GET_POST,
+            payload: res.data
+        });
+
+    } catch (error) {
+
+        dispatch({
+            type: POST_ERROR,
+            payload: { msg: error.response.statusText, status: error.response.status }
+        });
     }
 };

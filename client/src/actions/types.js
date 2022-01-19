@@ -34,3 +34,6 @@ export const UPDATE_LIKES = 'UPDATE_LIKES';
 // for deleting and adding posts
 export const DELETE_POST = 'DELETE_POST';
 export const ADD_POST = 'ADD_POST';
+// for getting (singular!) post
+
+export const GET_POST = 'GET_POST';
