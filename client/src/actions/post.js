@@ -6,7 +6,9 @@ import {
     GET_POSTS,
     POST_ERROR,
     UPDATE_LIKES,
-    GET_POST
+    GET_POST,
+    ADD_COMMENT,
+    REMOVE_COMMENT
 } from './types';
 
 // Get Posts
@@ -122,5 +124,43 @@ export const getPost = postId => async dispatch => {
             type: POST_ERROR,
             payload: { msg: error.response.statusText, status: error.response.status }
         });
+    }
+};
+
+// For add a comment using post id
+export const addComment = (postId, formData) => async dispatch=> {
+    try {
+        const res = await api.post(`/posts/comment/${postId}`, formData);
+        
+        dispatch ({
+            type: ADD_COMMENT,
+            payload:  res.data
+        });
+
+        dispatch(setAlert('Comment Posted!', 'success'));
+    } catch (error) {
+        dispatch ({
+            type: POST_ERROR,
+            payload: { msg: error.response.statusText, status: error.response.status }
+        })
+    }
+};
+
+// For add a comment using post id
+export const delComment = (postId, commentId) => async dispatch=> {
+    try {
+        const res = await api.delete(`/posts/comment/${postId}/${commentId}`);
+        
+        dispatch ({
+            type: REMOVE_COMMENT,
+            payload:  commentId
+        });
+
+        dispatch(setAlert('Comment removed!', 'success'));
+    } catch (error) {
+        dispatch ({
+            type: POST_ERROR,
+            payload: { msg: error.response.statusText, status: error.response.status }
+        })
     }
 };

@@ -8,7 +8,7 @@ import { incLike, decLike, delPost } from '../../actions/post';
 // FIX ME: THE PROFILE LINK IS BROKEN, THE LIKE/UNLIKE AND DELETE POST BUTTONS ARE NOT WORKING AT ALL
 //         THE CONSOLE SIMPLY TELLS US THAT THE METHODS ARE NOT DEFINED; DESPITE BEING IMPORTED
 
-const PostItem = ({ auth, post: { _id, text, name, avatar, user, likes, comments, date, incLike, decLike, delPost }, showActions
+const PostItem = ({ auth, post: { _id, text, name, avatar, user, likes, comments, date}, incLike, decLike, delPost, showActions
 }) => {
     return (
         <div className="post bg-white p-1 my-1">

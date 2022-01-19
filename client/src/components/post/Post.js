@@ -5,8 +5,10 @@ import Spinner from '../layout/Spinner';
 import { getPost } from '../../actions/post';
 import { Link, useParams } from 'react-router-dom';
 import PostItem from '../Posts/PostItem';
-
+import CommentForm from '../post/CommentForm';
+import CommentItem from '../post/CommentItem';
 // NOTE: Post was null because I declared the constant name as 'postId' instead of id :\
+// REMEMBER: comments are an *array* collectible in the posts collection 
 const Post = ({ getPost, post: { post, loading } }) => {
     const { id } = useParams();
     useEffect (() => {
@@ -26,6 +28,12 @@ const Post = ({ getPost, post: { post, loading } }) => {
                 Back to Posts
             </Link>
             <PostItem post={post} showActions={false} />
+            <CommentForm postId = {post._id} />
+            <div className="comments">
+                {post.comments.map(comment => (
+                    <CommentItem key={comment._id} comment= {comment} postId = {post._id} />
+                ))}
+            </div>
         </section>
     )   );
 };
