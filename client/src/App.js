@@ -40,6 +40,8 @@ import Profile from './components/profile/Profile';
 import Posts from './components/Posts/Posts';
 // for singular post views and routes
 import Post from './components/post/Post';
+// for 404 or components not found
+import NotFound from './components/layout/NotFound';
 
 /*
 if (localStorage.token){
@@ -129,6 +131,7 @@ const App = () => {
             path='posts/:id' 
             element= {<PrivateRoute component= {Post}/>} 
           />
+          <Route path="/*" component={<NotFound />} />
       </Routes>    
     </Router>
   </Provider>
